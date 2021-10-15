@@ -13,7 +13,7 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var CategoryImage: UIImageView!
     @IBOutlet weak var categoryName: UILabel!
     
-    var model = Model()
+    var model = SessionManager.shared
     var category: CategoryItem?
     
     override func awakeFromNib() {
@@ -27,40 +27,40 @@ class CategoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
      
-    func setCell(_ category: CategoryItem) {
-        self.category = category
-        self.categoryName.text = category.strCategory
-        
-        guard self.category?.strCategoryThumb != nil else {
-            print("Category Image doesn't exist")
-            return
-        }
-        
-        if let imageData = model.imagecache[self.category!.strCategoryThumb] {
-            print("using cache")
-            DispatchQueue.main.async {
-                self.CategoryImage.image = imageData
-            }
-            
-        }
-        
-        let url = URL(string: self.category!.strCategoryThumb)
-        
-        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
-            
-            if error == nil && data != nil {
-                
-                
-                let image = UIImage(data: data!)
-                self.model.imagecache[self.category!.strCategoryThumb] = image
-                DispatchQueue.main.async {
-                    self.CategoryImage.image = image
-                }
-        
-            }
-        }
-        
-        session.resume()
-    }
+//    func setCell(_ category: CategoryItem) {
+//        self.category = category
+//        self.categoryName.text = category.strCategory
+//
+//        guard self.category?.strCategoryThumb != nil else {
+//            print("Category Image doesn't exist")
+//            return
+//        }
+//
+//        if let imageData = model.imagecache[self.category!.strCategoryThumb] {
+//            print("using cache")
+//            DispatchQueue.main.async {
+//                self.CategoryImage.image = imageData
+//            }
+//
+//        }
+//
+//        let url = URL(string: self.category!.strCategoryThumb)
+//
+//        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
+//
+//            if error == nil && data != nil {
+//
+//
+//                let image = UIImage(data: data!)
+//                self.model.imagecache[self.category!.strCategoryThumb] = image
+//                DispatchQueue.main.async {
+//                    self.CategoryImage.image = image
+//                }
+//
+//            }
+//        }
+//
+//        session.resume()
+//    }
 
 }

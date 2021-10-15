@@ -28,8 +28,6 @@
 		4DD69B3F27126102002BA892 /* MealViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B3E27126102002BA892 /* MealViewCell.swift */; };
 		4DD69B41271270E0002BA892 /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B40271270E0002BA892 /* MenuDetailViewController.swift */; };
 		4DD69B4327127320002BA892 /* MealDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B4227127320002BA892 /* MealDetailItem.swift */; };
-		4DD69B452712784F002BA892 /* MealDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B442712784F002BA892 /* MealDetailViewCell.swift */; };
-		4DD69B4827151989002BA892 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B4727151989002BA892 /* SessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +73,6 @@
 		4DD69B3E27126102002BA892 /* MealViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewCell.swift; sourceTree = "<group>"; };
 		4DD69B40271270E0002BA892 /* MenuDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailViewController.swift; sourceTree = "<group>"; };
 		4DD69B4227127320002BA892 /* MealDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailItem.swift; sourceTree = "<group>"; };
-		4DD69B442712784F002BA892 /* MealDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewCell.swift; sourceTree = "<group>"; };
-		4DD69B4727151989002BA892 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +103,6 @@
 		4D4E808E2710E65D001FB6B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4D4E80932710F598001FB6B8 /* model.swift */,
 				4DD69B382712542F002BA892 /* Category.swift */,
 				4D4E808F2710E70D001FB6B8 /* CategoryItem.swift */,
 				4DD69B3C27125648002BA892 /* Menu.swift */,
@@ -177,7 +172,6 @@
 			children = (
 				4DD69B3227122063002BA892 /* CategoryTableViewCell.swift */,
 				4DD69B3E27126102002BA892 /* MealViewCell.swift */,
-				4DD69B442712784F002BA892 /* MealDetailViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,7 +206,7 @@
 		4DD69B4627151974002BA892 /* Session Manager */ = {
 			isa = PBXGroup;
 			children = (
-				4DD69B4727151989002BA892 /* SessionManager.swift */,
+				4D4E80932710F598001FB6B8 /* model.swift */,
 			);
 			path = "Session Manager";
 			sourceTree = "<group>";
@@ -348,7 +342,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DD69B452712784F002BA892 /* MealDetailViewCell.swift in Sources */,
 				4DD69B372712540B002BA892 /* MealItem.swift in Sources */,
 				4DD69B392712542F002BA892 /* Category.swift in Sources */,
 				4DD69B4327127320002BA892 /* MealDetailItem.swift in Sources */,
@@ -364,7 +357,6 @@
 				4D4E80902710E70D001FB6B8 /* CategoryItem.swift in Sources */,
 				4DD69B41271270E0002BA892 /* MenuDetailViewController.swift in Sources */,
 				4DAF959D2702063B00FC2D3D /* SceneDelegate.swift in Sources */,
-				4DD69B4827151989002BA892 /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

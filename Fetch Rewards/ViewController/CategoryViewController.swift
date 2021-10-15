@@ -11,7 +11,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var tableView: UITableView!
     
-    var model = Model()
+    var model = SessionManager.shared
     var categories = [CategoryItem]()
 
     override func viewDidLoad() {
@@ -45,6 +45,40 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.reloadData()
     }
     
+    func setCell(_ cell: CategoryTableViewCell, _ category: CategoryItem) {
+        cell.category = category
+        cell.categoryName.text = category.strCategory
+        
+        guard cell.category?.strCategoryThumb != nil else {
+            print("Category Image doesn't exist")
+            return
+        }
+        
+        if let imageData = model.imagecache[cell.category!.strCategoryThumb] {
+            print("using cache")
+            DispatchQueue.main.async {
+                cell.CategoryImage.image = imageData
+            }
+            
+        }
+        
+        let url = URL(string: cell.category!.strCategoryThumb)
+        
+        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
+            
+            if error == nil && data != nil {
+                
+                let image = UIImage(data: data!)
+                self.model.imagecache[cell.category!.strCategoryThumb] = image
+                DispatchQueue.main.async {
+                    cell.CategoryImage.image = image
+                }
+            }
+        }
+        
+        session.resume()
+    }
+    
     //TableView methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,13 +92,11 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let category = self.categories[indexPath.row]
         
-        cell.setCell(category)
+        self.setCell(cell,category)
         
         
         return cell
     }
-    
-    
     
     
     

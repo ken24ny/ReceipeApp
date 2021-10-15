@@ -31,16 +31,17 @@
                                                     <rect key="frame" x="10" y="0.0" width="404" height="150.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lko-bb-4y6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="154" height="150.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="164" height="150.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1SN-Tv-FOd">
-                                                            <rect key="frame" x="154" y="0.0" width="250" height="150.5"/>
+                                                            <rect key="frame" x="164" y="0.0" width="240" height="150.5"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" secondItem="1SN-Tv-FOd" secondAttribute="height" multiplier="8:5" id="5uA-I2-UHo"/>
                                                                 <constraint firstAttribute="height" constant="150" id="R0J-vg-dNB"/>
-                                                                <constraint firstAttribute="width" constant="250" id="u7e-Da-FOI"/>
+                                                                <constraint firstAttribute="width" constant="240" id="u7e-Da-FOI"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -92,26 +93,27 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" id="If9-ya-Jmw" customClass="MealViewCell" customModule="Fetch_Rewards" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="150.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="180.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="If9-ya-Jmw" id="mDU-tw-rd0">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aVb-RS-kFu">
-                                                    <rect key="frame" x="10" y="0.0" width="404" height="150.5"/>
+                                                    <rect key="frame" x="10" y="0.0" width="404" height="180.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1g-Lo-8g6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="144" height="150.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="214" height="180.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E6P-Nh-tPb">
-                                                            <rect key="frame" x="154" y="0.0" width="250" height="150.5"/>
+                                                            <rect key="frame" x="224" y="0.0" width="180" height="180.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="150" id="4BX-ut-iAc"/>
-                                                                <constraint firstAttribute="width" constant="250" id="K9b-Et-i2Z"/>
+                                                                <constraint firstAttribute="width" secondItem="E6P-Nh-tPb" secondAttribute="height" multiplier="1:1" id="0I7-O5-Dmq"/>
+                                                                <constraint firstAttribute="height" constant="180" id="4BX-ut-iAc"/>
+                                                                <constraint firstAttribute="width" constant="180" id="K9b-Et-i2Z"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -160,22 +162,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lrE-cL-KH0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="808"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x2z-6S-RbQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="291"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="291" id="onf-T4-GoL"/>
+                                            <constraint firstAttribute="width" secondItem="x2z-6S-RbQ" secondAttribute="height" multiplier="1:1" id="2S4-Ba-cea"/>
+                                            <constraint firstAttribute="width" constant="250" id="IYa-ah-L5n"/>
+                                            <constraint firstAttribute="height" constant="250" id="onf-T4-GoL"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfU-uc-NNz">
-                                        <rect key="frame" x="0.0" y="301" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="260" width="250" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-eg-69E">
-                                        <rect key="frame" x="0.0" y="331.5" width="414" height="476.5"/>
+                                        <rect key="frame" x="0.0" y="290.5" width="250" height="517.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -183,6 +187,9 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="x2z-6S-RbQ" firstAttribute="centerX" secondItem="lrE-cL-KH0" secondAttribute="centerX" id="2D2-ld-x9a"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XkH-hE-Aje"/>
