@@ -1,9 +1,11 @@
 //
-//  model.swift
+//  Session Manager.swift
 //  Fetch Rewards
 //
-//  Created by Kentaro Umemoto on 10/8/21.
+//  Created by Kentaro Umemoto on 10/16/21.
 //
+
+import Foundation
 
 import Foundation
 import UIKit
@@ -18,28 +20,22 @@ protocol MealDelegate {
     func mealsFetched(_ meals:[MealItem])
 }
 
-protocol MealDetailDelegate {
-    
-    func mealdetailFetched(_ mealdetail: [MealDetailItem])
-}
 
 class SessionManager {
     
     var delegate: ModelDelegate?
     var mealdelegate: MealDelegate?
-    var mealdetaildelegate: MealDetailDelegate?
     
-    var imagecache: [String: UIImage]
-    var cache = NSCache<NSString, NSData>()
+    var imagecache:NSCache<NSString, UIImage>
     
-    static let shared = SessionManager(cache: [:])
+    static let shared = SessionManager(cache: NSCache<NSString, UIImage>())
     
-    init(cache: [String: UIImage]) {
-        self.imagecache = [:]
-        
+    private init(cache: NSCache<NSString, UIImage>) {
+        self.imagecache = cache
     }
     
     func getCategory() {
+        
         let url = URL(string: Constants.CATEGORY_URL)
         
         guard url != nil else {
@@ -62,15 +58,12 @@ class SessionManager {
                     
                     let sortedCategories = response.categories!.sorted(by: { $0.strCategory < $1.strCategory })
                     
-                    
                     DispatchQueue.main.async {
                         self.delegate?.categoriesFetched(sortedCategories)
                     }
                     
                 }
                 
-                
-               // dump(response.categories![0])
             } catch  {
                 print(error.localizedDescription)
             }
@@ -112,8 +105,6 @@ class SessionManager {
                     }
                     
                 }
-                
-                //dump(response.meals![0])
             } catch  {
                 print(error.localizedDescription)
             }

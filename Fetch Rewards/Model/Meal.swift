@@ -1,8 +1,8 @@
 //
-//  Menu.swift
+//  Meal.swift
 //  Fetch Rewards
 //
-//  Created by Kentaro Umemoto on 10/9/21.
+//  Created by Kentaro Umemoto on 10/16/21.
 //
 
 import Foundation

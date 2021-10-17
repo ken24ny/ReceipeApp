@@ -8,14 +8,14 @@
 import UIKit
 
 class MealViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MealDelegate {
-
+    
     @IBOutlet weak var menuTableView: UITableView!
     
     var model = SessionManager.shared
     var meals = [MealItem]()
     var category: CategoryItem?
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,10 +24,6 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         model.mealdelegate = self
         model.getMenu(category: category!.strCategory)
-        
-        self.title = "some title"
-
-        
     }
     
     func mealsFetched(_ meals: [MealItem]) {
@@ -54,18 +50,18 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setCell(_ cell: MealViewCell, _ meal: MealItem) {
-        cell.meal = meal
         
+        cell.meal = meal
         cell.mealName.text = meal.strMeal
+        
         
         guard cell.meal?.strMealThumb != nil else {
             print("Category Image doesn't exist")
             return
         }
         
-        let url = URL(string: cell.meal!.strMealThumb)
         
-        if let imageData = model.imagecache[cell.meal!.strMealThumb] {
+        if let imageData = model.imagecache.object(forKey: cell.meal!.strMealThumb as NSString) {
             print("using cache")
             DispatchQueue.main.async {
                 cell.mealImage.image = imageData
@@ -73,20 +69,36 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
         
-        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
+        else {
             
-            if error == nil && data != nil {
+            let url = URL(string: cell.meal!.strMealThumb)
+            let session = URLSession.shared.dataTask(with: url!) { data, response, error in
                 
-                let image = UIImage(data: data!)
-                self.model.imagecache[cell.meal!.strMealThumb] = image
-                DispatchQueue.main.async {
-                    cell.mealImage.image = image
+                
+                if error != nil {
+                    let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+                    DispatchQueue.main.async {
+                        cell.mealImage.image = defaulticon
+                    }
                 }
-        
+                
+                if error == nil && data != nil {
+                    
+                    let image = UIImage(data: data!)
+                    //self.model.imagecache[cell.meal!.strMealThumb] = image
+                    self.model.imagecache.setObject(image!, forKey: cell.meal!.strMealThumb as NSString)
+                    DispatchQueue.main.async {
+                        cell.mealImage.image = image
+                    }
+                    
+                }
             }
+            
+            session.resume()
+            
         }
         
-        session.resume()
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,5 +107,5 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.setCell(cell, meals)
         return cell
     }
-
+    
 }

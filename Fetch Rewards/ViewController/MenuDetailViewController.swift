@@ -16,12 +16,19 @@ class MenuDetailViewController: UIViewController {
     
     var model = SessionManager.shared
     var meal: MealItem?
-    var mealdetail : MealDetailItem?
+    //var mealdetail : MealDetailItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let imageData = model.imagecache[meal!.strMealThumb] {
+        let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        DispatchQueue.main.async {
+            self.mealImage.image = defaulticon
+        }
+        
+        //if let imageData = model.imagecache[meal!.strMealThumb] {
+        if let imageData = model.imagecache.object(forKey: meal!.strMealThumb as NSString) {
+            
             print("hitting the cache")
             
             DispatchQueue.main.async {
@@ -30,41 +37,23 @@ class MenuDetailViewController: UIViewController {
             
         }
         
-        
         model.fetchData(withID: meal!.idMeal){ [weak self] data in
             let decoder = JSONDecoder()
             do {
                 let response = try decoder.decode(MealDetail.self, from: data)
                 DispatchQueue.main.async {
-                    self?.mealdetail = response.meals![0]
-                    self?.instruction.text = self?.mealdetail!.strInstructions
+                    //self?.mealdetail = response.meals![0]
+                    //self?.instruction.text = self?.mealdetail!.strInstructions
+                    //self?.mealName.text = self?.meal!.strMeal
+                    
+                    self?.instruction.text = response.meals![0].strInstructions
                     self?.mealName.text = self?.meal!.strMeal
                 }
             } catch  {
                 print(error.localizedDescription)
             }
         }
+        
     }
     
 }
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        model.fetchData(withID: meal!.idMeal){ [weak self] data in
-//            let decoder = JSONDecoder()
-//            do {
-//                let response = try decoder.decode(MealDetail.self, from: data)
-//
-//                DispatchQueue.main.async {
-//                    self?.mealdetail = response.meals![0]
-//                    self?.instruction.text = self?.mealdetail!.strInstructions
-//                    self?.mealName.text = self?.meal!.strMeal
-//                }
-//
-//            } catch  {
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
-//}

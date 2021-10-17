@@ -8,12 +8,12 @@
 import UIKit
 
 class CategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModelDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var model = SessionManager.shared
     var categories = [CategoryItem]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +54,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
             return
         }
         
-        if let imageData = model.imagecache[cell.category!.strCategoryThumb] {
+        if let imageData = model.imagecache.object(forKey: cell.category!.strCategoryThumb as NSString) {
             print("using cache")
             DispatchQueue.main.async {
                 cell.CategoryImage.image = imageData
@@ -62,34 +62,47 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }
         
-        let url = URL(string: cell.category!.strCategoryThumb)
-        
-        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
+        else {
             
-            if error == nil && data != nil {
+            let url = URL(string: cell.category!.strCategoryThumb)
+            
+            let session = URLSession.shared.dataTask(with: url!) { data, response, error in
                 
-                let image = UIImage(data: data!)
-                self.model.imagecache[cell.category!.strCategoryThumb] = image
-                DispatchQueue.main.async {
-                    cell.CategoryImage.image = image
+                if error != nil {
+                    print("cannot load view")
+                    
+                    let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+                    DispatchQueue.main.async {
+                        cell.CategoryImage.image = defaulticon
+                    }
+                    
+                }
+                
+                if error == nil && data != nil {
+                    
+                    let image = UIImage(data: data!)
+                    self.model.imagecache.setObject(image!, forKey: cell.category!.strCategoryThumb as NSString)
+                    DispatchQueue.main.async {
+                        cell.CategoryImage.image = image
+                    }
                 }
             }
+            
+            session.resume()
         }
         
-        session.resume()
     }
+    
     
     //TableView methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CATEGORYCELL_ID, for: indexPath) as! CategoryTableViewCell
-        
-        
         let category = self.categories[indexPath.row]
         
         self.setCell(cell,category)
@@ -98,9 +111,8 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    
-    
-
-
 }
+
+
+
 
