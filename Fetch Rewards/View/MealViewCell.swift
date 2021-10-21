@@ -36,33 +36,4 @@ class MealViewCell: UITableViewCell {
         
     }
     
-    //    func setCell(_ meal: MealItem) {
-    //        self.meal = meal
-    //
-    //        self.mealName.text = meal.strMeal
-    //
-    //        guard self.meal?.strMealThumb != nil else {
-    //            print("Category Image doesn't exist")
-    //            return
-    //        }
-    //
-    //        let url = URL(string: self.meal!.strMealThumb)
-    //
-    //        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
-    //
-    //            if error == nil && data != nil {
-    //
-    //                let image = UIImage(data: data!)
-    //                DispatchQueue.main.async {
-    //                    self.mealImage.image = image
-    //                }
-    //
-    //            }
-    //        }
-    //
-    //        session.resume()
-    //    }
-    
-    
-    
 }

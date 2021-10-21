@@ -76,7 +76,7 @@ class SessionManager {
     }
     
     
-    func getMenu(category: String) {
+    func getMeal(category: String) {
         
         let url = URL(string: Constants.MEAL_URL + category)
         
@@ -118,7 +118,7 @@ class SessionManager {
     
     
     
-    func fetchData(withID id: String, completion: @escaping (Data) -> Void) {
+    func getMealDetail(withID id: String, completion: @escaping (Data) -> Void) {
         guard let url = URL(string: Constants.MEAL_DESCRIPTION_URL + id) else {
             print("Invalid URL!")
             return

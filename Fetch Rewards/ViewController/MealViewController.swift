@@ -23,7 +23,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         menuTableView.delegate = self
         
         model.mealdelegate = self
-        model.getMenu(category: category!.strCategory)
+        model.getMeal(category: category!.strCategory)
     }
     
     func mealsFetched(_ meals: [MealItem]) {
@@ -39,10 +39,9 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let selectedMeal = meals[menuTableView.indexPathForSelectedRow!.row]
         
-        let menuVC = segue.destination as! MenuDetailViewController
+        let menuVC = segue.destination as! MealDetailViewController
         
         menuVC.meal = selectedMeal
-        //menuVC.model = model
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

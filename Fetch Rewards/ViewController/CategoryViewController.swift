@@ -9,6 +9,7 @@ import UIKit
 
 class CategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModelDelegate {
     
+    @IBOutlet weak var header: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var model = SessionManager.shared
@@ -22,6 +23,9 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         
         model.delegate = self
         model.getCategory()
+        
+        title = "Haha"
+        
         
         // Do any additional setup after loading the view.
     }

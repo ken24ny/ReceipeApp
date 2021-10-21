@@ -26,7 +26,7 @@
 		4DD69B392712542F002BA892 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B382712542F002BA892 /* Category.swift */; };
 		4DD69B3B2712544A002BA892 /* MealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B3A2712544A002BA892 /* MealDetail.swift */; };
 		4DD69B3F27126102002BA892 /* MealViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B3E27126102002BA892 /* MealViewCell.swift */; };
-		4DD69B41271270E0002BA892 /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B40271270E0002BA892 /* MenuDetailViewController.swift */; };
+		4DD69B41271270E0002BA892 /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B40271270E0002BA892 /* MealDetailViewController.swift */; };
 		4DD69B4327127320002BA892 /* MealDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B4227127320002BA892 /* MealDetailItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +71,7 @@
 		4DD69B382712542F002BA892 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4DD69B3A2712544A002BA892 /* MealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetail.swift; sourceTree = "<group>"; };
 		4DD69B3E27126102002BA892 /* MealViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewCell.swift; sourceTree = "<group>"; };
-		4DD69B40271270E0002BA892 /* MenuDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailViewController.swift; sourceTree = "<group>"; };
+		4DD69B40271270E0002BA892 /* MealDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
 		4DD69B4227127320002BA892 /* MealDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,7 +181,7 @@
 			children = (
 				4DAF959E2702063B00FC2D3D /* CategoryViewController.swift */,
 				4DD69B342712324D002BA892 /* MealViewController.swift */,
-				4DD69B40271270E0002BA892 /* MenuDetailViewController.swift */,
+				4DD69B40271270E0002BA892 /* MealDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 				4DD69B3B2712544A002BA892 /* MealDetail.swift in Sources */,
 				4DD69B3327122063002BA892 /* CategoryTableViewCell.swift in Sources */,
 				4D4E80902710E70D001FB6B8 /* CategoryItem.swift in Sources */,
-				4DD69B41271270E0002BA892 /* MenuDetailViewController.swift in Sources */,
+				4DD69B41271270E0002BA892 /* MealDetailViewController.swift in Sources */,
 				4DAF959D2702063B00FC2D3D /* SceneDelegate.swift in Sources */,
 				4D374C28271BAC150032A7E9 /* Session Manager.swift in Sources */,
 			);

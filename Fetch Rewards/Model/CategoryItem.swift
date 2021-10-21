@@ -25,7 +25,7 @@ struct CategoryItem: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         self.idCategory = try container.decode(String.self, forKey: .idCategory)
         self.strCategory = try container.decode(String.self, forKey: .strCategory)
         self.strCategoryThumb = try container.decode(String.self, forKey: .strCategoryThumb)

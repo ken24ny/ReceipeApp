@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct MealItem: Codable {
+struct MealItem: Decodable {
     
     let strMeal: String
     let strMealThumb: String
