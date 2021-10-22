@@ -7,12 +7,6 @@
 
 import Foundation
 
-extension String {
-    func emptyAsNil() -> String? {
-        self.isEmpty ? nil : self
-    }
-}
-
 struct MealDetailItem : Decodable {
     
     let strInstructions: String

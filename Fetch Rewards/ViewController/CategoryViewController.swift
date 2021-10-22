@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModelDelegate {
+class CategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -17,16 +17,9 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.dataSource = self
         tableView.delegate = self
-        
-        model.delegate = self
-        model.getCategory()
-        
-        title = "Haha"
-        
-        
+        categoriesFetched()
         // Do any additional setup after loading the view.
     }
     
@@ -44,11 +37,26 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         mealVC.category = selectedCategory
     }
     
-    func categoriesFetched(_ categories: [CategoryItem]) {
-        self.categories = categories
-        tableView.reloadData()
+    func categoriesFetched() {
+        model.getData(url: Constants.CATEGORY_URL, id: "",type: Category.self) { [unowned self] result in
+            switch result {
+            case .success(let response):
+                
+                if response.categories != nil {
+                    let sortedCategories = response.categories!.sorted(by: { $0.strCategory < $1.strCategory })
+                        self.categories = sortedCategories
+                        tableView.reloadData()
+                    print(categories[0])
+                    
+                    
+                }
+            case .failure(let err):
+                print(err)
+                
+            }
+        }
     }
-    
+
     func setCell(_ cell: CategoryTableViewCell, _ category: CategoryItem) {
         cell.category = category
         cell.categoryName.text = category.strCategory
@@ -59,7 +67,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         if let imageData = model.imagecache.object(forKey: cell.category!.strCategoryThumb as NSString) {
-            print("using cache")
+            //print("using cache")
             DispatchQueue.main.async {
                 cell.CategoryImage.image = imageData
             }

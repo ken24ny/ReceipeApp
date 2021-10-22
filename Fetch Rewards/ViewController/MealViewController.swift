@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MealViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MealDelegate {
+class MealViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -22,13 +22,31 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         menuTableView.dataSource = self
         menuTableView.delegate = self
         
-        model.mealdelegate = self
-        model.getMeal(category: category!.strCategory)
+        mealsFetched()
     }
     
-    func mealsFetched(_ meals: [MealItem]) {
-        self.meals = meals
-        menuTableView.reloadData()
+    func mealsFetched() {
+        
+        model.getData(url: Constants.MEAL_URL, id: category!.strCategory, type: Meal.self) { [unowned self] result in
+            
+            switch result {
+            case .success(let response):
+                
+                
+                if response.meals != nil {
+                    
+                    let sortedMeals = response.meals!.sorted(by: { $0.strMeal < $1.strMeal })
+                    self.meals = sortedMeals
+                    self.menuTableView.reloadData()
+                    
+                    
+                }
+            case .failure(let err):
+                print(err)
+                
+            }
+            
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,7 +79,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         if let imageData = model.imagecache.object(forKey: cell.meal!.strMealThumb as NSString) {
-            print("using cache")
+            //print("using cache")
             DispatchQueue.main.async {
                 cell.mealImage.image = imageData
             }
@@ -84,20 +102,14 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if error == nil && data != nil {
                     
                     let image = UIImage(data: data!)
-                    //self.model.imagecache[cell.meal!.strMealThumb] = image
                     self.model.imagecache.setObject(image!, forKey: cell.meal!.strMealThumb as NSString)
                     DispatchQueue.main.async {
                         cell.mealImage.image = image
                     }
-                    
                 }
             }
-            
             session.resume()
-            
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

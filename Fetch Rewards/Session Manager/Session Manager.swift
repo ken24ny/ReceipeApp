@@ -10,21 +10,7 @@ import Foundation
 import Foundation
 import UIKit
 
-protocol ModelDelegate {
-    
-    func categoriesFetched(_ categories:[CategoryItem])
-}
-
-protocol MealDelegate {
-    
-    func mealsFetched(_ meals:[MealItem])
-}
-
-
 class SessionManager {
-    
-    var delegate: ModelDelegate?
-    var mealdelegate: MealDelegate?
     
     var imagecache:NSCache<NSString, UIImage>
     
@@ -34,107 +20,59 @@ class SessionManager {
         self.imagecache = cache
     }
     
-    func getCategory() {
+    
+    func getData<T: Decodable>(url: String, id: String,type: T.Type, completion: @escaping (Result<T,APIError>) -> Void) {
         
-        let url = URL(string: Constants.CATEGORY_URL)
+        let url = URL(string: url + id)
         
         guard url != nil else {
-            print("Invalid URL!")
+            completion(Result.failure(APIError.badURL))
             return
         }
+        
         
         let session = URLSession.shared.dataTask(with: url!) { data, response, error in
             
-            if error != nil && data == nil {
-                print("There was a data retriving error!")
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            do {
-                let response = try decoder.decode(Category.self, from: data!)
+            if let error = error as? URLError {
+                completion(Result.failure(APIError.url(error)))
+            } else if let response = response as? HTTPURLResponse,!(200...299).contains(response.statusCode) {
+                completion(Result.failure(APIError.badResponse))
+            } else if let data = data {
                 
-                if response.categories != nil {
-                    
-                    let sortedCategories = response.categories!.sorted(by: { $0.strCategory < $1.strCategory })
+                let decoder = JSONDecoder()
+                do {
+                    let response = try decoder.decode(type, from: data)
                     
                     DispatchQueue.main.async {
-                        self.delegate?.categoriesFetched(sortedCategories)
+                        completion(Result.success(response))
                     }
-                    
+                } catch  {
+                    completion(Result.failure(APIError.parsing))
                 }
-                
-            } catch  {
-                print(error.localizedDescription)
             }
-            
-            
-        }
-        
-        session.resume()
-        
-    }
-    
-    
-    func getMeal(category: String) {
-        
-        let url = URL(string: Constants.MEAL_URL + category)
-        
-        guard url != nil else {
-            print("Invalid URL!")
-            return
-        }
-        
-        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
-            
-            if error != nil && data == nil {
-                print("There was a data retriving error!")
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            do {
-                let response = try decoder.decode(Meal.self, from: data!)
-                
-                if response.meals != nil {
-                    
-                    let sortedMeals = response.meals!.sorted(by: { $0.strMeal < $1.strMeal })
-                    
-                    DispatchQueue.main.async {
-                        self.mealdelegate?.mealsFetched(sortedMeals)
-                    }
-                    
-                }
-            } catch  {
-                print(error.localizedDescription)
-            }
-            
-            
-        }
-        
-        session.resume()
-        
-    }
-    
-    
-    
-    func getMealDetail(withID id: String, completion: @escaping (Data) -> Void) {
-        guard let url = URL(string: Constants.MEAL_DESCRIPTION_URL + id) else {
-            print("Invalid URL!")
-            return
-        }
-        
-        let session = URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            guard error == nil, let data = data else {   //could be done far better by checking error and response codes
-                print("There was a data retriving error!")
-                return
-            }
-            
-            completion(data)
         }
         session.resume()
     }
     
+    
+//    
+//    func getMealDetail(withID id: String, completion: @escaping (Data) -> Void) {
+//        guard let url = URL(string: Constants.MEAL_DESCRIPTION_URL + id) else {
+//            print("Invalid URL!")
+//            return
+//        }
+//        
+//        let session = URLSession.shared.dataTask(with: url) { data, response, error in
+//            
+//            guard error == nil, let data = data else {   //could be done far better by checking error and response codes
+//                print("There was a data retriving error!")
+//                return
+//            }
+//            
+//            completion(data)
+//        }
+//        session.resume()
+//    }
+//    
     
 }
