@@ -8,6 +8,7 @@
 import Foundation
 
 enum APIError: Error {
+    
     case badURL
     case url(URLError)
     case badResponse

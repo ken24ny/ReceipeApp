@@ -11,9 +11,10 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var menuTableView: UITableView!
     
-    var model = SessionManager.shared
+    var session = SessionManager.shared
     var meals = [MealItem]()
     var category: CategoryItem?
+    var errorMessage: String?
     
     
     override func viewDidLoad() {
@@ -27,7 +28,9 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func mealsFetched() {
         
-        model.getData(url: Constants.MEAL_URL, id: category!.strCategory, type: Meal.self) { [unowned self] result in
+        self.errorMessage = nil
+        
+        session.getData(url: Constants.MEAL_URL, id: category!.strCategory, type: Meal.self) { [unowned self] result in
             
             switch result {
             case .success(let response):
@@ -42,7 +45,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                 }
             case .failure(let err):
-                print(err)
+                self.errorMessage = err.localizedDescription
                 
             }
             
@@ -72,14 +75,14 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.mealName.text = meal.strMeal
         
         
-        guard cell.meal?.strMealThumb != nil else {
+        guard let url = URL(string: cell.meal!.strMealThumb) else {
             print("Category Image doesn't exist")
             return
         }
         
         
-        if let imageData = model.imagecache.object(forKey: cell.meal!.strMealThumb as NSString) {
-            //print("using cache")
+        if let imageData = session.imagecache.object(forKey: cell.meal!.strMealThumb as NSString) {
+            print("using meal cache")
             DispatchQueue.main.async {
                 cell.mealImage.image = imageData
             }
@@ -87,10 +90,8 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         else {
-            
-            let url = URL(string: cell.meal!.strMealThumb)
-            let session = URLSession.shared.dataTask(with: url!) { data, response, error in
-                
+
+            let session = URLSession.shared.dataTask(with: url) { data, response, error in
                 
                 if error != nil {
                     let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
@@ -102,7 +103,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if error == nil && data != nil {
                     
                     let image = UIImage(data: data!)
-                    self.model.imagecache.setObject(image!, forKey: cell.meal!.strMealThumb as NSString)
+                    self.session.imagecache.setObject(image!, forKey: cell.meal!.strMealThumb as NSString)
                     DispatchQueue.main.async {
                         cell.mealImage.image = image
                     }

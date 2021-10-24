@@ -12,8 +12,9 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    var model = SessionManager.shared
+    var session = SessionManager.shared
     var categories = [CategoryItem]()
+    var errorMessage: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,10 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func categoriesFetched() {
-        model.getData(url: Constants.CATEGORY_URL, id: "",type: Category.self) { [unowned self] result in
+        
+        self.errorMessage = nil
+        
+        session.getData(url: Constants.CATEGORY_URL, id: "",type: Category.self) { [unowned self] result in
             switch result {
             case .success(let response):
                 
@@ -46,12 +50,11 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
                     let sortedCategories = response.categories!.sorted(by: { $0.strCategory < $1.strCategory })
                         self.categories = sortedCategories
                         tableView.reloadData()
-                    print(categories[0])
                     
                     
                 }
             case .failure(let err):
-                print(err)
+                errorMessage = err.localizedDescription
                 
             }
         }
@@ -61,13 +64,12 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.category = category
         cell.categoryName.text = category.strCategory
         
-        guard cell.category?.strCategoryThumb != nil else {
-            print("Category Image doesn't exist")
+        guard let url = URL(string: cell.category!.strCategoryThumb) else {
             return
         }
         
-        if let imageData = model.imagecache.object(forKey: cell.category!.strCategoryThumb as NSString) {
-            //print("using cache")
+        if let imageData = session.imagecache.object(forKey: cell.category!.strCategoryThumb as NSString) {
+            print("using category cache")
             DispatchQueue.main.async {
                 cell.CategoryImage.image = imageData
             }
@@ -76,9 +78,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         
         else {
             
-            let url = URL(string: cell.category!.strCategoryThumb)
-            
-            let session = URLSession.shared.dataTask(with: url!) { data, response, error in
+            let session = URLSession.shared.dataTask(with: url) { data, response, error in
                 
                 if error != nil {
                     print("cannot load view")
@@ -93,7 +93,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
                 if error == nil && data != nil {
                     
                     let image = UIImage(data: data!)
-                    self.model.imagecache.setObject(image!, forKey: cell.category!.strCategoryThumb as NSString)
+                    self.session.imagecache.setObject(image!, forKey: cell.category!.strCategoryThumb as NSString)
                     DispatchQueue.main.async {
                         cell.CategoryImage.image = image
                     }

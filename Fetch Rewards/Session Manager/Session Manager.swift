@@ -23,15 +23,13 @@ class SessionManager {
     
     func getData<T: Decodable>(url: String, id: String,type: T.Type, completion: @escaping (Result<T,APIError>) -> Void) {
         
-        let url = URL(string: url + id)
-        
-        guard url != nil else {
+        guard let url = URL(string: url + id) else {
             completion(Result.failure(APIError.badURL))
             return
         }
         
         
-        let session = URLSession.shared.dataTask(with: url!) { data, response, error in
+        let session = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let error = error as? URLError {
                 completion(Result.failure(APIError.url(error)))
@@ -53,26 +51,5 @@ class SessionManager {
         }
         session.resume()
     }
-    
-    
-//    
-//    func getMealDetail(withID id: String, completion: @escaping (Data) -> Void) {
-//        guard let url = URL(string: Constants.MEAL_DESCRIPTION_URL + id) else {
-//            print("Invalid URL!")
-//            return
-//        }
-//        
-//        let session = URLSession.shared.dataTask(with: url) { data, response, error in
-//            
-//            guard error == nil, let data = data else {   //could be done far better by checking error and response codes
-//                print("There was a data retriving error!")
-//                return
-//            }
-//            
-//            completion(data)
-//        }
-//        session.resume()
-//    }
-//    
     
 }
