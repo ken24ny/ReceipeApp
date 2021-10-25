@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Custom error type for network request
 enum APIError: Error {
     
     case badURL
@@ -16,15 +17,16 @@ enum APIError: Error {
     case unknown
     
     var localizedDescription: String {
+        
         switch self {
-        case .badURL,.parsing:
-            return "Somthing went wrong"
+        case .badURL:
+            return "Cannot be converted to a valid URL"
         case .badResponse:
             return "Connection to the server failed"
-            
+        case.parsing:
+            return "Parsing error"
         case .unknown:
             return "Unknown error"
-            
         case .url:
             return "URL Session error"
         }

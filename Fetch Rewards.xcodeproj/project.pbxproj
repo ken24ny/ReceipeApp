@@ -15,13 +15,14 @@
 		4DA9D135272221B6005DAC03 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9D134272221B6005DAC03 /* Error.swift */; };
 		4DA9D1372724B792005DAC03 /* CategoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9D1362724B792005DAC03 /* CategoryTest.swift */; };
 		4DA9D1392725D6AF005DAC03 /* MealTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9D1382725D6AF005DAC03 /* MealTest.swift */; };
+		4DA9D13B27268029005DAC03 /* ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9D13A27268029005DAC03 /* ErrorTests.swift */; };
+		4DA9D13D272684C4005DAC03 /* MealDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9D13C272684C4005DAC03 /* MealDetailTest.swift */; };
 		4DAF959B2702063B00FC2D3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF959A2702063B00FC2D3D /* AppDelegate.swift */; };
 		4DAF959D2702063B00FC2D3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF959C2702063B00FC2D3D /* SceneDelegate.swift */; };
 		4DAF959F2702063B00FC2D3D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF959E2702063B00FC2D3D /* CategoryViewController.swift */; };
 		4DAF95A22702063B00FC2D3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DAF95A02702063B00FC2D3D /* Main.storyboard */; };
 		4DAF95A42702063E00FC2D3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DAF95A32702063E00FC2D3D /* Assets.xcassets */; };
 		4DAF95A72702063E00FC2D3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DAF95A52702063E00FC2D3D /* LaunchScreen.storyboard */; };
-		4DAF95B22702063E00FC2D3D /* Fetch_RewardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF95B12702063E00FC2D3D /* Fetch_RewardsTests.swift */; };
 		4DAF95BC2702063E00FC2D3D /* Fetch_RewardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF95BB2702063E00FC2D3D /* Fetch_RewardsUITests.swift */; };
 		4DAF95BE2702063E00FC2D3D /* Fetch_RewardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF95BD2702063E00FC2D3D /* Fetch_RewardsUITestsLaunchTests.swift */; };
 		4DD69B3327122063002BA892 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD69B3227122063002BA892 /* CategoryTableViewCell.swift */; };
@@ -60,6 +61,8 @@
 		4DA9D134272221B6005DAC03 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		4DA9D1362724B792005DAC03 /* CategoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTest.swift; sourceTree = "<group>"; };
 		4DA9D1382725D6AF005DAC03 /* MealTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTest.swift; sourceTree = "<group>"; };
+		4DA9D13A27268029005DAC03 /* ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTests.swift; sourceTree = "<group>"; };
+		4DA9D13C272684C4005DAC03 /* MealDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailTest.swift; sourceTree = "<group>"; };
 		4DAF95972702063B00FC2D3D /* Fetch Rewards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fetch Rewards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DAF959A2702063B00FC2D3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DAF959C2702063B00FC2D3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +72,6 @@
 		4DAF95A62702063E00FC2D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DAF95A82702063E00FC2D3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DAF95AD2702063E00FC2D3D /* Fetch RewardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fetch RewardsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DAF95B12702063E00FC2D3D /* Fetch_RewardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_RewardsTests.swift; sourceTree = "<group>"; };
 		4DAF95B72702063E00FC2D3D /* Fetch RewardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fetch RewardsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DAF95BB2702063E00FC2D3D /* Fetch_RewardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_RewardsUITests.swift; sourceTree = "<group>"; };
 		4DAF95BD2702063E00FC2D3D /* Fetch_RewardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_RewardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -170,9 +172,10 @@
 		4DAF95B02702063E00FC2D3D /* Fetch RewardsTests */ = {
 			isa = PBXGroup;
 			children = (
-				4DAF95B12702063E00FC2D3D /* Fetch_RewardsTests.swift */,
+				4DA9D13A27268029005DAC03 /* ErrorTests.swift */,
 				4DA9D1362724B792005DAC03 /* CategoryTest.swift */,
 				4DA9D1382725D6AF005DAC03 /* MealTest.swift */,
+				4DA9D13C272684C4005DAC03 /* MealDetailTest.swift */,
 			);
 			path = "Fetch RewardsTests";
 			sourceTree = "<group>";
@@ -386,8 +389,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA9D13B27268029005DAC03 /* ErrorTests.swift in Sources */,
+				4DA9D13D272684C4005DAC03 /* MealDetailTest.swift in Sources */,
 				4DA9D1392725D6AF005DAC03 /* MealTest.swift in Sources */,
-				4DAF95B22702063E00FC2D3D /* Fetch_RewardsTests.swift in Sources */,
 				4DA9D1372724B792005DAC03 /* CategoryTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,6 @@ import Foundation
 struct MealDetailItem : Decodable {
     
     let strInstructions: String
-    let idMeal: String
     var strIngredient1 : String?
     let strIngredient2 : String?
     let strIngredient3 : String?
@@ -55,7 +54,6 @@ struct MealDetailItem : Decodable {
     
     enum CodingKeys: String, CodingKey {
         case strInstructions
-        case idMeal
         case strIngredient1
         case strIngredient2
         case strIngredient3
@@ -102,7 +100,6 @@ struct MealDetailItem : Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         self.strInstructions = try container.decode(String.self, forKey: .strInstructions)
-        self.idMeal = try container.decode(String.self, forKey: .idMeal)
         
         self.strIngredient1 = try container.decodeIfPresent(String.self, forKey: .strIngredient1)?.emptyAsNil()
         self.strIngredient2 = try container.decodeIfPresent(String.self, forKey: .strIngredient2)?.emptyAsNil()

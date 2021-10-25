@@ -17,22 +17,21 @@ class CategoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
+    
+    //set default image
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
         DispatchQueue.main.async {
             self.CategoryImage.image = defaulticon
         }
-        // Remove Subviews Or Layers That Were Added Just For This Cell
         
     }
 }

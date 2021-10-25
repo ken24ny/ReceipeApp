@@ -10,13 +10,11 @@ import XCTest
 class Fetch_RewardsUITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
     }
 
+    //check Category Header
     func testHeader1() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
@@ -27,6 +25,7 @@ class Fetch_RewardsUITests: XCTestCase {
         XCTAssertEqual(categoryHeader, "Categories")
     }
     
+    //check Meals Header
     func testHeader2() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
@@ -38,29 +37,29 @@ class Fetch_RewardsUITests: XCTestCase {
     }
     
     
+    //check number of rows for Category
     func testcountCategoryTable() {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
         
-        let totalCategory = XCUIApplication().tables.children(matching: .cell).count
+        let totalCategory = XCUIApplication().tables["CategoryTable"].cells.count
         
         XCTAssertEqual(totalCategory, 14)
     }
 
     
     
-//    func testcountBeefMenu() {
-//        // UI tests must launch the application that they test.
-//        let app = XCUIApplication()
-//        app.launch()
-//
-//        app.tables.element(boundBy: 0).cells.element(boundBy: 1).tap()
-//
-//        let totalBeefMenu = XCUIApplication().tables.children(matching: .cell).count
-//
-//        XCTAssertEqual(totalBeefMenu, 42)
-//    }
-    
+    //test when user chooses Beef from the Category Table
+    func testcountBeefMenu() {
+        let app = XCUIApplication()
+        app.launch()
+
+        app.tables.element(boundBy: 0).cells.element(boundBy: 0).tap()
+
+        let totalBeefMenu = XCUIApplication().tables["MenuTable"].cells.count
+
+        XCTAssertEqual(totalBeefMenu, 42)
+    }
     
 }

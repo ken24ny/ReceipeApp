@@ -21,9 +21,9 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.dataSource = self
         tableView.delegate = self
         categoriesFetched()
-        // Do any additional setup after loading the view.
+        
+        tableView.accessibilityIdentifier = Constants.CATEGORY_TABLE_ID
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //Get a reference to the Category that was tapped on
@@ -38,6 +38,8 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         mealVC.category = selectedCategory
     }
     
+    
+    //fetch the Category data and load the data into the view
     func categoriesFetched() {
         
         self.errorMessage = nil
@@ -80,8 +82,8 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
             
             let session = URLSession.shared.dataTask(with: url) { data, response, error in
                 
+                //set default image
                 if error != nil {
-                    print("cannot load view")
                     
                     let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
                     DispatchQueue.main.async {

@@ -7,6 +7,10 @@
 
 import Foundation
 
+
+//String extension
+// emptyasNil used in the decoding process
+// trimTrailingWhiteSpaces used in the MealDetailViewController
 extension String {
     func emptyAsNil() -> String? {
         self.isEmpty ? nil : self

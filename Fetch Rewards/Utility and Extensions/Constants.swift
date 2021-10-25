@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// Constant static variables used thorughout the application
 struct Constants {
     
     static var CATEGORY_URL = "https://www.themealdb.com/api/json/v1/1/categories.php"
@@ -15,4 +15,6 @@ struct Constants {
     static var MEAL_DESCRIPTION_URL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
     static var CATEGORYCELL_ID = "CategoryCell"
     static var MENU_CELL_ID = "MenuCell"
+    static var CATEGORY_TABLE_ID = "CategoryTable"
+    static var MENU_TABLE_ID = "MenuTable"
 }

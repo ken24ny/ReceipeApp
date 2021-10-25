@@ -24,8 +24,12 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         menuTableView.delegate = self
         
         mealsFetched()
+        
+        menuTableView.accessibilityIdentifier = Constants.MENU_TABLE_ID
     }
     
+    
+    //fetch the Meal data and load the data into the view
     func mealsFetched() {
         
         self.errorMessage = nil
@@ -65,10 +69,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         menuVC.meal = selectedMeal
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        meals.count
-    }
-    
+
     func setCell(_ cell: MealViewCell, _ meal: MealItem) {
         
         cell.meal = meal
@@ -76,7 +77,6 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         guard let url = URL(string: cell.meal!.strMealThumb) else {
-            print("Category Image doesn't exist")
             return
         }
         
@@ -93,6 +93,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             let session = URLSession.shared.dataTask(with: url) { data, response, error in
                 
+                //default image
                 if error != nil {
                     let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
                     DispatchQueue.main.async {
@@ -112,6 +113,12 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
             session.resume()
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        meals.count
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.MENU_CELL_ID, for: indexPath) as! MealViewCell

@@ -16,6 +16,7 @@ class MealDetailViewController: UIViewController {
     
     var session = SessionManager.shared
     var meal: MealItem?
+    var errorMessage: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +26,11 @@ class MealDetailViewController: UIViewController {
         getMealDetail()
         setImage()
     }
+    
+    //set the image using the cache or default icon
     func setImage() {
         
-        //default icon
-        let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
-        DispatchQueue.main.async {
-            self.mealImage!.image = defaulticon
-        }
-        
+
         if let imageData = session.imagecache.object(forKey: meal!.strMealThumb as NSString) {
             
             print("using mealdetailitem cache")
@@ -41,11 +39,19 @@ class MealDetailViewController: UIViewController {
                 self.mealImage!.image = imageData
             }
         }
+        
+        else {
+            let defaulticon = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+            DispatchQueue.main.async {
+                self.mealImage!.image = defaulticon
+            }
+        }
     }
     
     
-    //fetch the meal detail data
+    //fetch the meal detail data and constructing the view
     func getMealDetail() {
+        errorMessage = nil
         session.getData(url: Constants.MEAL_DESCRIPTION_URL, id: meal!.idMeal, type: MealDetail.self) { result  in
             switch result {
             case .success(let response):
@@ -81,7 +87,7 @@ class MealDetailViewController: UIViewController {
                 }
                 
             case .failure(let err):
-                print(err.localizedDescription)
+                self.errorMessage = err.localizedDescription
             }
             
         }

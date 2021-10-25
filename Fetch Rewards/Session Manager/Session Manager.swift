@@ -10,8 +10,11 @@ import Foundation
 import Foundation
 import UIKit
 
+
+// class to handle network request
 class SessionManager {
     
+    //cache to store <URL:UIImage>
     var imagecache:NSCache<NSString, UIImage>
     
     static let shared = SessionManager(cache: NSCache<NSString, UIImage>())
@@ -21,6 +24,7 @@ class SessionManager {
     }
     
     
+    // generic function to handle network request
     func getData<T: Decodable>(url: String, id: String,type: T.Type, completion: @escaping (Result<T,APIError>) -> Void) {
         
         guard let url = URL(string: url + id) else {
