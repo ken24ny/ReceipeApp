@@ -14,14 +14,14 @@ struct CategoryItem: Decodable {
     
     
     enum CodingKeys: String, CodingKey {
-
+        
         case strCategory
         case strCategoryThumb
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         self.strCategory = try container.decode(String.self, forKey: .strCategory)
         self.strCategoryThumb = try container.decode(String.self, forKey: .strCategoryThumb)
     }

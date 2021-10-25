@@ -10,9 +10,9 @@ import UIKit
 
 class MealDetailViewController: UIViewController {
     
-    @IBOutlet weak var mealImage: UIImageView?
-    @IBOutlet weak var mealName: UILabel?
-    @IBOutlet weak var instruction: UITextView?
+    @IBOutlet weak var mealImage: UIImageView!
+    @IBOutlet weak var mealName: UILabel!
+    @IBOutlet weak var instruction: UITextView!
     
     var session = SessionManager.shared
     var meal: MealItem?
@@ -32,8 +32,6 @@ class MealDetailViewController: UIViewController {
         
 
         if let imageData = session.imagecache.object(forKey: meal!.strMealThumb as NSString) {
-            
-            print("using mealdetailitem cache")
             
             DispatchQueue.main.async {
                 self.mealImage!.image = imageData

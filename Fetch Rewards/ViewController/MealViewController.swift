@@ -82,7 +82,6 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         if let imageData = session.imagecache.object(forKey: cell.meal!.strMealThumb as NSString) {
-            print("using meal cache")
             DispatchQueue.main.async {
                 cell.mealImage.image = imageData
             }

@@ -98,7 +98,7 @@ struct MealDetailItem : Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         self.strInstructions = try container.decode(String.self, forKey: .strInstructions)
         
         self.strIngredient1 = try container.decodeIfPresent(String.self, forKey: .strIngredient1)?.emptyAsNil()
@@ -121,7 +121,7 @@ struct MealDetailItem : Decodable {
         self.strIngredient18 = try container.decodeIfPresent(String.self, forKey: .strIngredient18)?.emptyAsNil()
         self.strIngredient19 = try container.decodeIfPresent(String.self, forKey: .strIngredient19)?.emptyAsNil()
         self.strIngredient20 = try container.decodeIfPresent(String.self, forKey: .strIngredient20)?.emptyAsNil()
-    
+        
         self.strMeasure1 = try container.decodeIfPresent(String.self, forKey: .strMeasure1)?.emptyAsNil()
         self.strMeasure2 = try container.decodeIfPresent(String.self, forKey: .strMeasure2)?.emptyAsNil()
         self.strMeasure3 = try container.decodeIfPresent(String.self, forKey: .strMeasure3)?.emptyAsNil()

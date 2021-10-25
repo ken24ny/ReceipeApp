@@ -9,7 +9,6 @@ import UIKit
 
 class CategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var header: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var session = SessionManager.shared
@@ -50,8 +49,8 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 if response.categories != nil {
                     let sortedCategories = response.categories!.sorted(by: { $0.strCategory < $1.strCategory })
-                        self.categories = sortedCategories
-                        tableView.reloadData()
+                    self.categories = sortedCategories
+                    tableView.reloadData()
                     
                     
                 }
@@ -61,7 +60,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
-
+    
     func setCell(_ cell: CategoryTableViewCell, _ category: CategoryItem) {
         cell.category = category
         cell.categoryName.text = category.strCategory
@@ -71,7 +70,6 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         if let imageData = session.imagecache.object(forKey: cell.category!.strCategoryThumb as NSString) {
-            print("using category cache")
             DispatchQueue.main.async {
                 cell.CategoryImage.image = imageData
             }
